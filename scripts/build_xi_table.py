@@ -17,12 +17,12 @@ tokenizer = SimpleTokenizer()
 tokenizer.load("data/processed/")
 vocab_size = len(tokenizer.word2idx) 
 model = SemanticCommSystem(vocab_size).to(DEVICE).eval()
-
+model.load_state_dict(torch.load("model_checkpoint.pt"))
 
 
 k_list   = range(1, 6)           # 1…5 symbols/word
 snr_grid = range(-10, 21, 2)     # –10…20 dB every 2 dB
-sent     = "Test sentence for similarity."  # any fixed probe
+sent     = "CERTIFIABLE LADY is stationary near (26.72 N, -80.05 W)."  # any fixed probe
 
 table = {}
 for k in k_list:
